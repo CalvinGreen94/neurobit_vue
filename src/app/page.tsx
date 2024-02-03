@@ -229,7 +229,6 @@ function App() {
           {/* <br /> */}
           {account.status === 'connected' && (
             <button className="register-button2" type="button" onClick={() => disconnect()}>
-              Current Trading Pair: {predictionData.pair}<br />
               Disconnect<br />
               {account.addresses}
               <br />
