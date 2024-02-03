@@ -86,7 +86,7 @@ function App() {
         console.error('Error fetching data from FaunaDB:', (error as Error).message);
       }
     };
-
+    
     fetchData();
   }, []);
 
@@ -124,33 +124,7 @@ function App() {
 
   return (
     <>
-      <div className='portfolio'>
-        <div className='predictionData'>
-          <button className="register-button2" type="button">
-            {/* Current Trading Pair: {predictionData.pair}<br /><br /> */}
 
-            NeuroBit Liquidity Address:  0x34A98960a48082506357EdEb39EebC9cD390d2Ad<br /><br />
-            {/* NeuroBit {predictionData.pair} Liquidity: {predictionData.predicted_balance} */}
-            <br />
-            <form onSubmit={submit}>
-              <input name="value" placeholder="0.05" required />
-              <button
-                className="buttonbuy"
-                disabled={isPending}
-                type="submit"
-              >
-                <h3>{isPending ? 'Confirming...' : 'Initiate'} </h3>
-              </button>
-              {hash && <div>Transaction Hash: {hash}</div>}
-              {isConfirming && <div>Waiting for confirmation...</div>}
-              {isConfirmed && <div>Transaction confirmed.</div>}
-              {error && (
-                <div>Error: {(error as BaseError).shortMessage || error.message}</div>
-              )}
-            </form>
-          </button>
-        </div>
-      </div>
 
         <div className='portfolio'>
           <div className='predictionData'>
@@ -235,10 +209,11 @@ function App() {
               {account.status}
               <div className='respSection'>
                 {/* <p> Response</p> */}
-                {/* <p>{predictionData.resp}</p> */}
 
                 {predictionData && (
                   <>
+                                  <p>{predictionData.resp}</p>
+
                     <br />
                     {/* <div className='balanceBox2'> */}
 
@@ -297,7 +272,7 @@ function App() {
               {/* </div> */}
               <div className='respSection'>
                 {/* <p> Response</p> */}
-                {/* <p>{predictionData.resp}</p> */}
+                <p>{predictionData.resp}</p>
                 <form onSubmit={submit}>
                   0x34A98960a48082506357EdEb39EebC9cD390d2Ad
                   <input name="value" placeholder="0.05" required />
