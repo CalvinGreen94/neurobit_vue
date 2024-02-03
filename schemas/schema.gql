@@ -1,0 +1,55 @@
+
+
+# # Write your query or mutation here
+#  mutation topicCreation {
+#   createTopics(data: { user: "test",topic:"test",content:"content",slug:"slug"}) {
+#     _id
+#    user
+#    topic
+#    content
+#     slug
+#   }
+#  }
+
+# mutation updateTopics {
+#   updateTopics(id:"364359694463008841", data: {user: "testUpdate",topic:"testUpdate",content:"contentUpdate",slug:"slugUpdate" }) {
+#     user
+#     _id
+#   }
+# }
+
+# query TopicQuery ($slug: String!){
+#   topics_by_slug2(slug: $slug){
+#       _id
+#       user
+#       topic 
+#       content
+#       slug
+#     }
+#   }
+ 
+
+# query TopicQuery($slug: String!) {
+# topics_by_slug2(slug: $slug) {
+# data {
+# _id
+# user
+# topic
+# content
+# slug
+# }
+# }
+# }
+
+# query MyTopicQuery {
+#   topics_by_id{
+#     data{
+#       _id
+#       topic 
+#       content
+#       user
+#       slug
+#     }
+#   }
+#   }
+ 

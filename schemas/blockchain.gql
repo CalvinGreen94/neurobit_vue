@@ -1,0 +1,37 @@
+type blockchain{
+ date: String
+ topic: String
+ content: String
+ slug: String
+ user: String
+ eth_address:String
+ upvote: Int
+ downvote: Int
+}
+type Query {
+ blockchain_by_slug(slug:String!):blockchain
+}
+
+# type CreatedBlockchainComment {
+#     commentId: String
+#     comment: String
+#   }
+
+# type Query {
+#     getAllBlockchainComments: [BlockchainCommentObject]
+#     getBlockchainCommentsBySlug(slug: String!): [BlockchainCommentObject]
+#   }
+
+
+# type BlockchainCommentObject {
+#     commentId: String
+#     slug: String
+#     date: String
+#     name: String
+#     comment: String
+# }
+
+# type Query {
+#  blockchain_by_id: [blockchain!]
+# }
+

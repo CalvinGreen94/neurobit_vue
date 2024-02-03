@@ -1,0 +1,14 @@
+type NeuroBit{
+ predicted_price: String
+ current_buy: Int
+ current_sell: Int
+ context: String
+ response: String
+ side:String
+}
+
+
+type Query {
+ neuro_by_id: [NeuroBit!]
+}
+
