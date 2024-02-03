@@ -127,10 +127,10 @@ function App() {
       <div className='portfolio'>
         <div className='predictionData'>
           <button className="register-button2" type="button">
-            Current Trading Pair: {predictionData.pair}<br /><br />
+            {/* Current Trading Pair: {predictionData.pair}<br /><br /> */}
 
             NeuroBit Liquidity Address:  0x34A98960a48082506357EdEb39EebC9cD390d2Ad<br /><br />
-            NeuroBit {predictionData.pair} Liquidity: {predictionData.predicted_balance}
+            {/* NeuroBit {predictionData.pair} Liquidity: {predictionData.predicted_balance} */}
             <br />
             <form onSubmit={submit}>
               <input name="value" placeholder="0.05" required />
@@ -235,7 +235,7 @@ function App() {
               {account.status}
               <div className='respSection'>
                 {/* <p> Response</p> */}
-                <p>{predictionData.resp}</p>
+                {/* <p>{predictionData.resp}</p> */}
 
                 {predictionData && (
                   <>
@@ -297,7 +297,7 @@ function App() {
               {/* </div> */}
               <div className='respSection'>
                 {/* <p> Response</p> */}
-                <p>{predictionData.resp}</p>
+                {/* <p>{predictionData.resp}</p> */}
                 <form onSubmit={submit}>
                   0x34A98960a48082506357EdEb39EebC9cD390d2Ad
                   <input name="value" placeholder="0.05" required />
