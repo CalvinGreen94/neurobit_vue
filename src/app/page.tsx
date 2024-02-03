@@ -125,7 +125,12 @@ function App() {
   return (
     <>
 
+<div className='portfolio'>
+          <div className='predictionData'>
 
+            
+            </div>
+            </div>
         <div className='portfolio'>
           <div className='predictionData'>
             <button className="register-button2" type="button">
