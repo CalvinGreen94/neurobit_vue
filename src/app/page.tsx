@@ -245,7 +245,7 @@ function App() {
 
               Bot Liquidity: {predictionData.predicted_balance}
               </button>
-            {account.address}
+            {/* {account.address} */}
 
             {/* {portfolioData.value} */}
             {/* <button className="register-button2" type="button">Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
@@ -365,6 +365,8 @@ function App() {
                   type="submit"
                 >
                   <h3>{isPending ? 'Confirming...' : 'Initiate'} </h3>
+                  {account.address}
+
                 </button>
 
                 {hash && <div>Transaction Hash: {hash}</div>}
