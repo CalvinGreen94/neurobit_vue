@@ -30,6 +30,21 @@ interface PredictionData {
   predicted_balance: string;
 }
 
+interface PortfolioData {
+  // pair: string;
+  // predicted_price: string;
+  // buy_price: string;
+  // sell_price: string;
+  // context: string;
+  // resp: string;
+  // side: string;
+  // predicted_balance: string;
+  name: string;
+  value: string;
+}
+
+
+
 function App() {
   const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
@@ -48,6 +63,7 @@ function App() {
   const openAboutModal = () => setAboutModalOpen(true);
   const closeAboutModal = () => setAboutModalOpen(false);
   const [predictionData, setPredictionData] = useState<PredictionData | null>(null);
+  const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,6 +108,73 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from FaunaDB based on the account address
+        const result: any = await client.query(
+          q.Get(
+            q.Match(q.Index('portfolio_by_address'), account.address)
+          )
+        );
+
+        // Process data
+        const data = result.data;
+        const name = data.name || '';
+        // Convert null value to '0'
+        const value = data.value || 0;
+
+        // Set portfolio data
+        setPortfolioData({
+          name: name,
+          value: value
+        });
+      } catch (error) {
+        console.error('Error fetching data from FaunaDB:', (error as Error).message);
+      }
+    };
+
+    if (account.address) {
+      fetchData();
+    }
+  }, [account.address]);
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // Fetch data from FaunaDB
+  //       const result: any = await client.query(
+  //         q.Map(
+  //           q.Paginate(q.Documents(q.Collection('Portfolio'))),
+  //           q.Lambda('x', q.Get(q.Var('x')))
+  //         )
+  //       );
+
+  //       // Process data
+  //       const data = result.data[0]?.data;
+
+  //       if (data) {
+  //         const name = data.name || '';
+  //         const value = data.value || '';
+
+
+  //         setPortfolioData({
+  //           name:name,
+  //           value:value
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching data from FaunaDB:', (error as Error).message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+
+
+
 
   var createP = client.query(
     q.Create(
@@ -116,13 +199,33 @@ function App() {
     const to = '0x34A98960a48082506357EdEb39EebC9cD390d2Ad'
     const value = formData.get('value') as string
     sendTransaction({ to, value: parseEther(value) })
+    var createT = client.query(
+      q.Create(
+        q.Collection('Transfers'),
+        { data: { name: account.addresses, hash: hash, value: value, isPending: isPending, isLoading: isConfirming, isSuccess: isConfirmed } }
+      )
+    );
+    createT.then(function (response) {
+      console.log(response);
+    });
+
   }
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({
       hash,
+
     })
 
+  // var createP = client.query(
+  //   q.Create(
+  //     q.Collection('Trades'),
+  //     { data: { name: account.addresses, } }
+  //   )
+  // );
+  // createP.then(function (response) {
+  //   console.log(response);
+  // });
 
   return (
     <>
@@ -130,10 +233,21 @@ function App() {
       {account.status == 'connected' && (
         <div className='portfolio'>
           <div className='predictionData'>
-          <div className="logo-container"></div>
+            <div className="logo-container"></div>
 
-            <button className="register-button3" type="button" onClick={() => disconnect()}>Disconnect Wallet <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad <br />
-              Bot Liquidity: {predictionData.predicted_balance}</button>
+            <button className="register-button4" type="button" onClick={() => disconnect()}><div className='disconnection'>Disconnect Wallet</div> <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad <br />
+              {/* {portfolioData && ( // Check if portfolioData exists
+                <div>
+                  <p>Name: {portfolioData.name}</p>
+                  <p>Value: {portfolioData.value}</p>
+                </div>
+              )} */}
+
+              Bot Liquidity: {predictionData.predicted_balance}
+              </button>
+            {account.address}
+
+            {/* {portfolioData.value} */}
             {/* <button className="register-button2" type="button">Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
 
           </div></div>)}
@@ -142,7 +256,7 @@ function App() {
         <div className='portfolio'>
           <div className='predictionData'>
 
-            <button className="register-button2" type="button" onClick={openModal}>Connect Wallet</button>
+            <button className="register-button4" type="button" onClick={openModal}>Connect Wallet</button>
             {/* <button className="register-button2" type="button">Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
 
           </div></div>)}
@@ -160,20 +274,20 @@ function App() {
         {/* <br /> */}
 
         <div className='predictionData'>
-                {/* About Button */}
-      <button className="register-button3" type="button" onClick={openAboutModal}>
-        About
-      </button>
-      {/* About Modal */}
-      <Modal
-        isOpen={isAboutModalOpen}
-        onRequestClose={closeAboutModal}
-        contentLabel="About Modal"
-        className="register-button2"
-        
-      >
-        
-          {/* <button className="register-button2" type="button"> */}
+          {/* About Button */}
+          <button className="register-button3" type="button" onClick={openAboutModal}>
+            About
+          </button>
+          {/* About Modal */}
+          <Modal
+            isOpen={isAboutModalOpen}
+            onRequestClose={closeAboutModal}
+            contentLabel="About Modal"
+            className="register-button2"
+
+          >
+
+            {/* <button className="register-button2" type="button"> */}
 
 
             Welcome to the unparalleled realm of NeuroBit – a convergence where the cutting-edge prowess of Deep Learning harmonizes with Crypto Market Excellence.
@@ -229,9 +343,9 @@ function App() {
             Are you ready to unravel the mysteries of crypto market forecasting and trading? Seize the moment – sign up for NeuroBit API today and unlock a new dimension of insights and predictions, where the future is not a mystery but a canvas waiting for your bold strokes. The future is NeuroBit.
 
 
-          {/* </button > */}
-        {/* Add About content here */}
-      </Modal>
+            {/* </button > */}
+            {/* Add About content here */}
+          </Modal>
           {/* status: {account.status}
           <br />
           address: {account.addresses}
@@ -256,6 +370,7 @@ function App() {
                 {hash && <div>Transaction Hash: {hash}</div>}
                 {isConfirming && <div>Waiting for confirmation...</div>}
                 {isConfirmed && <div>Transaction confirmed.</div>}
+
                 {error && (
                   <div>Error: {(error as BaseError).shortMessage || error.message}</div>
                 )}
@@ -279,7 +394,7 @@ function App() {
                     {predictionData && (
                       <>
                         <br />
-                        Bot Liquidity: {predictionData.predicted_balance}
+                        {/* Bot Liquidity: {predictionData.predicted_balance} */}
                         {/* <div className='balanceBox'> */}
                         <h3>Buy Price</h3>
                         <p>{predictionData.buy_price}</p>
@@ -359,7 +474,7 @@ function App() {
                     {predictionData && (
                       <>
                         <br />
-                        Bot Liquidity: {predictionData.predicted_balance}
+                        {/* Bot Liquidity: {predictionData.predicted_balance} */}
                         {/* <div className='balanceBox'> */}
                         <h3>Buy Price</h3>
                         <p>{predictionData.buy_price}</p>

@@ -5,7 +5,7 @@ body {
 
   margin: 0;
   padding: 0;
-  background-image: url('../../public/images/3d_girl.png'), linear-gradient(to right, #7873f5, #ff6ec4); /* Layer background image and linear gradient */
+  background-image: url('../../public/images/3d_girl.png'), linear-gradient(to right, #fff, #050505); /* Layer background image and linear gradient */
   background-repeat: no-repeat;
   background-size: contain;
   /* position: relative; */
@@ -164,6 +164,25 @@ input {
   background-image: url('../../public/images/BG.png');
 }
 
+.disconnection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: auto;/* Adjust padding */
+    margin:  auto; /* Add auto margin to center horizontally */
+    border-radius: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    /* background: url('../../public/images/9a1.png'); */
+    /* color: #fff; Text color */
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 500px; /* Set max-width to make it slimmer */
+  
+}
+.disconnection:hover{
+  color: #050505;
+}
 
 .predictionData {
   display: flex;
@@ -975,7 +994,7 @@ input {
 }
 
 .portfolio .register-button2:hover {
-  background-image: url('../../public/images/logo.png');
+  background-image: url('../../public/images/9a1.png');
 }
 
 
@@ -1000,6 +1019,32 @@ input {
 }
 
 .portfolio .register-button3:hover {
+  background-image: url('../../public/images/BG.png');
+}
+
+.portfolio .register-button4 {
+  top: 20%;
+  right: 20%;
+  position: relative; /* Change position to relative for normal flow */
+  display: inline-block; /* Ensure it doesn't take full width */
+  color: #fff;
+  padding: 10px; /* Adjust padding for better touch interaction */
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em; /* Adjust font size for mobile */
+  transition: background 0.3s ease;
+  background-image: url('../../public/images/9a1.png');
+  background-clip: text;
+  -webkit-background-clip: text; /* For older Safari support */
+  color: transparent; /* Hide text color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Reduce shadow for mobile */
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.portfolio .register-button4:hover {
   background-image: url('../../public/images/BG.png');
 }
 
