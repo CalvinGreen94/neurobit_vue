@@ -5,9 +5,12 @@ body {
 
   margin: 0;
   padding: 0;
-  background-image: url('../../public/images/3d_girl.png'), linear-gradient(to right, #fff, #050505); /* Layer background image and linear gradient */
-  background-repeat: no-repeat;
+  background-image:url('../../public/images/3d_girl.png'), linear-gradient(to right, #fff, #050505); 
   background-size: contain;
+  /* position: relative; */
+  /* background-image: url('../../public/images/3d_girl.png'), linear-gradient(to right, #fff, #050505);  */
+  background-repeat: no-repeat;
+  /* background-size: contain;  */
   /* position: relative; */
   
 }
@@ -165,9 +168,11 @@ input {
 }
 
 .disconnection{
+    top:20px;
+    left: 20px;;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     padding: auto;/* Adjust padding */
     margin:  auto; /* Add auto margin to center horizontally */
     border-radius: auto;
@@ -189,12 +194,12 @@ input {
   flex-direction: column;
   align-items: center;
   padding: 20px; /* Adjust padding */
-  margin: 20px auto; /* Add auto margin to center horizontally */
+  margin:  auto; /* Add auto margin to center horizontally */
   border-radius: 20px;
   /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); */
   /* background: url('../../public/images/9a1.png'); */
   /* color: #fff; Text color */
-  background-position: left center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 500px; /* Set max-width to make it slimmer */
@@ -1024,8 +1029,8 @@ input {
 
 .portfolio .register-button4 {
   top: 20%;
-  right: 20%;
-  position: relative; /* Change position to relative for normal flow */
+  left: 20%;
+  /* position: relative; Change position to relative for normal flow */
   display: inline-block; /* Ensure it doesn't take full width */
   color: #fff;
   padding: 10px; /* Adjust padding for better touch interaction */

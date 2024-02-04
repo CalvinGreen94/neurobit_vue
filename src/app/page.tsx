@@ -233,9 +233,10 @@ function App() {
       {account.status == 'connected' && (
         <div className='portfolio'>
           <div className='predictionData'>
-            <div className="logo-container"></div>
+            {/* <div className="logo-container"></div> */}
 
-            <button className="register-button4" type="button" onClick={() => disconnect()}><div className='disconnection'>Disconnect Wallet</div> <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad <br />
+            <button className="register-button4" type="button" onClick={() => disconnect()}><div className='disconnection'><div className="logo-container"></div>Disconnect Wallet</div> <br />
+              
               {/* {portfolioData && ( // Check if portfolioData exists
                 <div>
                   <p>Name: {portfolioData.name}</p>
@@ -243,8 +244,8 @@ function App() {
                 </div>
               )} */}
 
-              Bot Liquidity: {predictionData.predicted_balance}
-              </button>
+              {/* Bot Liquidity: {predictionData.predicted_balance} */}
+            </button>
             {/* {account.address} */}
 
             {/* {portfolioData.value} */}
@@ -276,7 +277,7 @@ function App() {
         <div className='predictionData'>
           {/* About Button */}
           <button className="register-button3" type="button" onClick={openAboutModal}>
-            About
+            About BitVue-AI
           </button>
           {/* About Modal */}
           <Modal
@@ -353,6 +354,8 @@ function App() {
           {/* <br /> */}
           {account.status === 'connected' && (
             <button className="register-button2" type="button">
+                           <button className="register-button4" type="button">  Bot Liquidity: {predictionData.predicted_balance}  <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button>
+
               {/* Disconnect<br /> */}
               {/* {account.addresses} */}
               <br />
