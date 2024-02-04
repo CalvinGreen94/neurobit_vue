@@ -257,7 +257,7 @@ function App() {
         <div className='portfolio'>
           <div className='predictionData'>
 
-            <button className="register-button4" type="button" onClick={openModal}>Connect Wallet</button>
+            <button className="register-button4" type="button" onClick={openModal}><div className='disconnection'><div className="logo-container"></div>Connect Wallet</div></button>
             {/* <button className="register-button2" type="button">Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
 
           </div></div>)}
@@ -514,10 +514,11 @@ function App() {
           contentLabel="Connect Wallet Modal"
           className="register-button2"
         >
+          <div className="logo-container"></div>
           <h2>Connect Wallet</h2>
           {connectors.map((connector) => (
             <button
-              className="register-button"
+              className="register-button4"
               key={connector.uid}
               onClick={() => handleConnect(connector)}
               type="button"
