@@ -1,10 +1,11 @@
+'use client';
 import React, { useState } from "react";
-import { buy } from '../abi/buy';
+import { sell } from '../abi/sell';
 import { useToast } from "@chakra-ui/react"; // Import useToast for displaying notifications
 import { useAccount, useConnect, useWriteContract } from 'wagmi';
 import { useWaitForTransactionReceipt } from 'wagmi';
 
-export default function BuyForm() {
+export default function SellForm() {
     const [amount, setAmount] = useState(""); // State to track the input amount
     const account = useAccount();
     const toast = useToast(); // Get the toast function from Chakra UI
@@ -29,8 +30,8 @@ export default function BuyForm() {
             console.log("Amount:", amount); // Check the amount before calling the contract
             await writeContract({
                 address: '0x7f29314cE024bd807f5eF4F2A8Ca575d6BDEEE86',
-                abi: buy,
-                functionName: 'buy',
+                sell,
+                functionName: 'sell',
                 args: [amount],
             });
         } catch (err) {
@@ -62,7 +63,7 @@ export default function BuyForm() {
                         disabled={isPending}
                         type="submit"
                     >
-                        {isPending ? 'Confirming...' : 'Buy'}
+                        {isPending ? 'Confirming...' : 'Sell'}
                     </button>
                     {hash && <div>Transaction Hash: {hash}</div>}
                     {isConfirming && <div>Waiting for confirmation...</div>}

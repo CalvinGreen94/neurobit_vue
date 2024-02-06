@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './styles.css';
 import { useSpring, useTransform } from 'framer-motion';
-
+import PurchaseForm from './components/purchase';
 import { useAccount, useConnect, useDisconnect, Connector,useWriteContract } from 'wagmi';
 import { query as q, Client } from 'faunadb';
 // import { SendTransaction } from './components/send_transaction';
 import BuyForm from './components/buy';
+import SellForm from './components/sell';
 import {
   type BaseError,
   useSendTransaction,
@@ -358,6 +359,8 @@ function App() {
          </div> */}
           {/* <br /> */}
           <BuyForm/>
+          <SellForm/>
+          <PurchaseForm/>
           {account.status === 'connected' && (
             <button className="register-button2" type="button">
               
