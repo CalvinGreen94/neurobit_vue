@@ -5,9 +5,10 @@ import Modal from 'react-modal';
 import './styles.css';
 import { useSpring, useTransform } from 'framer-motion';
 
-import { useAccount, useConnect, useDisconnect, Connector } from 'wagmi';
+import { useAccount, useConnect, useDisconnect, Connector,useWriteContract } from 'wagmi';
 import { query as q, Client } from 'faunadb';
 // import { SendTransaction } from './components/send_transaction';
+import BuyForm from './components/buy';
 import {
   type BaseError,
   useSendTransaction,
@@ -46,10 +47,13 @@ interface PortfolioData {
 
 
 function App() {
+  const { writeContract } = useWriteContract()
   const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
   const { disconnect } = useDisconnect();
-
+  const [amount, setAmount] = React.useState(0)
+  const handleChange = (value) => setAmount(value) 
+  
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);
@@ -279,6 +283,7 @@ function App() {
           <button className="register-button3" type="button" onClick={openAboutModal}>
             About BitVue-AI
           </button>
+          {/* <Buy/> */}
           {/* About Modal */}
           <Modal
             isOpen={isAboutModalOpen}
@@ -352,9 +357,11 @@ function App() {
           address: {account.addresses}
          </div> */}
           {/* <br /> */}
+          <BuyForm/>
           {account.status === 'connected' && (
             <button className="register-button2" type="button">
-                           <button className="register-button4" type="button">  Bot Liquidity: {predictionData.predicted_balance}  <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button>
+              
+                           {/* <button className="register-button4" type="button">  Bot Liquidity: {predictionData.predicted_balance}  <br />Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
 
               {/* Disconnect<br /> */}
               {/* {account.addresses} */}

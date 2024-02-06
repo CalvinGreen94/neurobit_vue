@@ -1,11 +1,12 @@
 import { http, createConfig } from 'wagmi'
 import { mainnet, sepolia,goerli } from 'wagmi/chains'
-import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors'
+import { coinbaseWallet, injected,metaMask, walletConnect } from 'wagmi/connectors'
 
 export const config = createConfig({
   chains: [mainnet, sepolia, goerli],
   connectors: [
     injected(),
+    metaMask(),
     coinbaseWallet({ appName: 'NeuroBit DEX-AI' }),
     walletConnect({ projectId: '0b1f3a0b1e7529f790075842cdf6fe61' }),
   ],
