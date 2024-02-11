@@ -240,7 +240,11 @@ function App() {
           <div className='predictionData'>
             {/* <div className="logo-container"></div> */}
 
-            <button className="register-button4" type="button" onClick={() => disconnect()}><div className='disconnection'><div className="logo-container"></div>Disconnect Wallet</div> <br />
+            <button className="register-button4" type="button" onClick={() => disconnect()}>
+              <div className='disconnection'>
+                <div className="logo-container"></div>
+                Disconnect Wallet
+              </div> <br />
               
               {/* {portfolioData && ( // Check if portfolioData exists
                 <div>
@@ -262,7 +266,13 @@ function App() {
         <div className='portfolio'>
           <div className='predictionData'>
 
-            <button className="register-button4" type="button" onClick={openModal}><div className='disconnection'><div className="logo-container"></div>Connect Wallet</div></button>
+            <button className="register-button4" type="button" onClick={openModal}>
+              <div className='disconnection'>
+                <div className="logo-container"></div>
+                  Connect Wallet
+              </div>
+            </button>
+
             {/* <button className="register-button2" type="button">Liqiuidity Address: 0x34A98960a48082506357EdEb39EebC9cD390d2Ad</button> */}
 
           </div></div>)}

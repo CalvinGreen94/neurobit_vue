@@ -185,9 +185,6 @@ input {
     max-width: 500px; /* Set max-width to make it slimmer */
   
 }
-.disconnection:hover{
-  color: #050505;
-}
 
 .predictionData {
   display: flex;
@@ -1038,7 +1035,6 @@ input {
   cursor: pointer;
   border-radius: 8px;
   font-size: 1em; /* Adjust font size for mobile */
-  transition: background 0.3s ease;
   background-image: url('../../public/images/9a1.png');
   background-clip: text;
   -webkit-background-clip: text; /* For older Safari support */
@@ -1051,6 +1047,14 @@ input {
 
 .portfolio .register-button4:hover {
   background-image: url('../../public/images/BG.png');
+}
+
+.register-button4 {
+  transition: transform ease-in-out 0.3s;
+}
+
+.register-button4:hover {
+  transform: scale(1.2);
 }
 
 .portfolio .ellipse {
